@@ -7,3 +7,6 @@
     color: whitesmoke;
     
 }
+.row-container:hover .opacity-0{
+    opacity: theme("opacity.100");
+}
