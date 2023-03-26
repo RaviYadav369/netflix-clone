@@ -1,11 +1,14 @@
-import {  Fragment, ReactElement, useRef,useEffect } from "react";
+import { Fragment, ReactElement, useRef, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Position } from "../common/commom-type";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: (value: boolean) => void;
   children: React.ReactElement;
   title: string | ReactElement;
+  closeModal: () => void;
+  position?: Position | null;
 };
 
 export default function YoutubeModal({
@@ -13,21 +16,15 @@ export default function YoutubeModal({
   onClose,
   title,
   children,
+  closeModal,
+  position,
 }: ModalProps) {
-    const panelRef = useRef<HTMLDivElement>(null);
- function onMouseLeave(){
-
- }
-    useEffect(() => {
-        if(panelRef.current){
-
-            panelRef.current?.addEventListener("mouseleave",onMouseLeave)
-        }
-    }, [panelRef.current])
-    
+  const panelRef = useRef<HTMLDivElement>(null);
+  function onMouseLeave() {
+    closeModal();
+  }
 
   return (
-
     // Use the `Transition` component at the root level
 
     <Transition appear show={isOpen} as={Fragment}>
@@ -54,19 +51,26 @@ export default function YoutubeModal({
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
+              afterEnter={() => {
+                panelRef.current?.addEventListener("mouseleave", onMouseLeave);
+              }}
+              afterLeave={() => {
+                panelRef.current?.addEventListener("mouseleave", onMouseLeave);
+              }}
             >
-              <Dialog.Panel className="transform overflow-hidden rounded-2xl bg-black p-6 text-left align-middle shadow-xl transition-all">
-              <div ref={panelRef} >
+              <Dialog.Panel
+                ref={panelRef}
+                style={position ? { position: "fixed", ...position } : {}}
+                className="transform overflow-hidden rounded-2xl bg-black p-2 text-left align-middle shadow-xl transition-all"
+              >
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white"
                 >
                   {title}
                 </Dialog.Title>
-              
-                 {children}
-                </div>
 
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>

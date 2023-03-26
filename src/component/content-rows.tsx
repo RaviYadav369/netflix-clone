@@ -76,7 +76,7 @@ export default function ContentRows({ title, endpoint }: RowProp) {
   }, []);
 
   return (
-    <section className="row-container ml-12 hover:cursor-pointer">
+    <section className="relative row-container ml-12 mt-2 hover:cursor-pointer">
       <h2 className="mb-4">{title}</h2>
       <PageIndicator pageCount={pageCount} currentPage={currentPage} className="mb-4 transition-opacity duration-300 ease-in opacity-0" />
       <section
@@ -85,13 +85,13 @@ export default function ContentRows({ title, endpoint }: RowProp) {
       >
        {!disablePrev ? <button
           onClick={onClickPrev}
-          className="absolute opacity-0 w-12 h-full z-[1] bg-black/25"
+          className="absolute  opacity-0 w-12 h-full z-[1] bg-black/25 transition-opacity duration-300 ease-in"
         >
           <IoIosArrowBack className="text-2xl" />
         </button> : null}
         { !disableNext ? <button
           onClick={onClickNext}
-          className="absolute opacity-0 w-12 right-1 z-[1] h-full bg-black/25"
+          className="absolute right-0 opacity-0 w-12 transition-opacity duration-300 ease-in z-[1] h-full bg-black/25"
         >
           <IoIosArrowForward className="text-2xl" />
         </button> : null}
@@ -101,9 +101,9 @@ export default function ContentRows({ title, endpoint }: RowProp) {
         >
           {rowData?.map((row,index) => {
             
-            // console.log(row);
+            // console.log(row.id,index)
 
-            return <MovieCard key={`${row.id}-${index}`} {...row} CARD_WIDTH={CARD_WIDTH} />
+            return <MovieCard movId={`${row.id}-${index}`} key={`${row.id}-${index}`} {...row} CARD_WIDTH={CARD_WIDTH} />
             
           })}
         </section>
