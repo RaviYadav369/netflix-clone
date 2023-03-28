@@ -1,6 +1,9 @@
 import React,{useState,useEffect} from "react";
 import netflixLogo from "../assets/react.svg";
 import { Link, NavLink } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import { IoNotifications } from "react-icons/io5";
+import Profile from "./Profile";
 
 const Header = () => {
 const [fixed, setfixed] = useState(false)
@@ -24,8 +27,8 @@ const [fixed, setfixed] = useState(false)
     
 
   return (
-    <header className={` py-1 w-full z-10 ${fixed ? "fixed top-0 bg-black": "relative bg-transparent"} transition-colors duration-400 ease-linear `}>
-      <nav className="grid grid-cols-[200px_auto_200px] items-center gap-4 ">
+    <header className={` py-1 w-full z-10 ${fixed ? "fixed top-0 bg-black": "relative bg-transparent"} transition-colors duration-500 ease-linear `}>
+      <nav className="grid grid-cols-[200px_auto_400px] items-center gap-4 ">
         <section className="h-12">
           <Link to="/browser">
             <img src={netflixLogo} alt="Netflix Logo" className="h-full w-full object-contain" />
@@ -48,7 +51,12 @@ const [fixed, setfixed] = useState(false)
           </ul>
         </section>
 
-        <section className="h-12">secondary nav</section>
+        <section className="h-12 flex items-center gap-2">
+          <SearchBar />
+          <IoNotifications className="text-2xl" />
+         
+          <Profile />
+        </section>
       </nav>
     </header>
   );

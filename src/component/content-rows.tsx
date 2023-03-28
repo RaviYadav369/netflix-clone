@@ -76,7 +76,7 @@ export default function ContentRows({ title, endpoint }: RowProp) {
   }, []);
 
   return (
-    <section className="relative row-container ml-12 mt-2 hover:cursor-pointer">
+    <section className="relative row-container ml-12 mt-5 hover:cursor-pointer">
       <h2 className="mb-4">{title}</h2>
       <PageIndicator pageCount={pageCount} currentPage={currentPage} className="mb-4 transition-opacity duration-300 ease-in opacity-0" />
       <section

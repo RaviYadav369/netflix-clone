@@ -5,7 +5,17 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "slide-rti": "slide-rti .4s ease-in-out"
+      },
+      keyframes: {
+        "slide-rti": {
+          form: { "margin-right": "-100%" },
+          to: { "margin-right": "0%" }
+        }
+      }
+    },
   },
   plugins: [],
 }

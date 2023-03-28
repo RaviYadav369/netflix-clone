@@ -91,7 +91,7 @@ export default function MovieCard({
     setisOpen(value);
   }
   function closeModal() {
-    setisOpen(true);
+    setisOpen(false);
   }
 
   return (
@@ -131,7 +131,7 @@ export default function MovieCard({
               width: "400",
               height: "400",
               playerVars: {
-                autoplay: 1,
+                autoplay: 0,
                 playinline: 1,
                 controls: 0,
               },
@@ -139,7 +139,7 @@ export default function MovieCard({
             
             videoId={videoInfo?.key}
             className={`${
-              !heightPoster ? "invisible h-0" : "visible h-full"
+              !heightPoster ? "invisible h-0" : "visible h-[600px]"
             } w-[400px] `}
           />
           <section className="flex items-center justify-between p-4  text-white">
